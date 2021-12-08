@@ -31,7 +31,7 @@ class Document:
                 doc_count = 1
             self.map_word_weights[word] = 0.5 * (
                     1 + num / max_freq) * math.log(
-                self.database.get_num_of_documents() / doc_count)
+                self.database.get_num_of_documents() / doc_count) # TODO fix self containing words log(1) = 0
 
     def generate_classic(self):
         tokenizer = RegexpTokenizer(r'\w+')
@@ -52,4 +52,12 @@ class Document:
         return result_str
 
     def generate_words_referat(self):
-        pass
+        my_list = []
+        for word, w in self.map_word_weights.items():
+            my_list.append([word, w])
+        result = sorted(my_list, key=itemgetter(1), reverse=True)
+        result_str = ""
+        for word, w in result[:10]:
+            result_str += word + '\n'
+        return result_str
+

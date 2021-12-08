@@ -10,9 +10,9 @@ def start_shjit():
     filename = askopenfilename()  # show an "Open" dialog box and return the path to the selected file
     doc = Document(database, filename)
     doc.calculates_weights()
-    print("\nClassic referat")
+    print("\nClassic referat:")
     print(doc.generate_classic())
-    print("\nWord referat")
+    print("\nWord referat:")
     print(doc.generate_words_referat())
     print(filename)
 
