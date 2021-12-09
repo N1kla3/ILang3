@@ -27,11 +27,10 @@ class Document:
             if max_freq == 0:
                 max_freq = num
             doc_count = self.database.get_num_of_documents_with_word(word)
-            if doc_count == 0:
-                doc_count = 1
+            in_log = (self.database.get_num_of_documents() + 1) / (doc_count + 1)
             self.map_word_weights[word] = 0.5 * (
                     1 + num / max_freq) * math.log(
-                self.database.get_num_of_documents() / doc_count) # TODO fix self containing words log(1) = 0
+                in_log)
 
     def generate_classic(self):
         tokenizer = RegexpTokenizer(r'\w+')
